@@ -5,7 +5,7 @@ import AddTask from './components/AddTask'
 
 function App() {
   //showing different interface by default
-  const [showAddTask, setShowAddTask] = useState(true)
+  const [showAddTask, setShowAddTask] = useState(false)
 
   //initialising various tasks
   const [tasks, setTasks] = useState([
@@ -46,9 +46,9 @@ function App() {
     setTasks(tasks.map((task) => task.id === id ? { ...task, reminder: !task.reminder } : task))
   }
 
-  return (
+  return ( 
     <div className="container">
-      <Header />
+      <Header onAdd={() => setShowAddTask(!showAddTask)} showAdd = {showAddTask}/>
       {showAddTask && <AddTask onAdd={addTask}/>}
       {tasks.length > 0 ? (<Tasks tasks = { tasks } 
         onDelete = {deleteTask} 
